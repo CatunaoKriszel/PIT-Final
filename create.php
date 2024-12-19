@@ -78,7 +78,7 @@
 </head>
 <body>
     <div class="form-container">
-        <h2>Add a New Book</h2>
+        <h2>Book Information</h2>
         <?php 
         include "config.php";
 
