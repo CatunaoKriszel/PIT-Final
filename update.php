@@ -35,12 +35,12 @@ if (isset($_POST['update'])) {
         body {
             font-family: 'Arial', sans-serif;
             background-color: #f8d7da; /* Light red background */
-            color: #333;
+            margin: 0;
+            padding: 0;
             display: flex;
             justify-content: center;
             align-items: center;
             height: 100vh;
-            margin: 0;
         }
         .form-container {
             background-color: #ffffff;
@@ -48,23 +48,27 @@ if (isset($_POST['update'])) {
             border-radius: 15px;
             box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
             width: 400px;
+            text-align: center;
             transition: transform 0.2s;
         }
         .form-container:hover {
             transform: scale(1.02);
         }
         .form-container h2 {
-            text-align: center;
-            color: #c0392b; /* Dark red for the title */
             margin-bottom: 20px;
+            color: #c0392b; /* Dark red for the title */
             font-size: 24px;
             font-weight: bold;
         }
-        .form-container input,
-        .form-container textarea {
-            width: 100%;
-            padding: 12px;
+        .form-container form {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .form-container input, .form-container textarea {
             margin-bottom: 15px;
+            padding: 12px;
+            width: 100%;
             border: 1px solid #e74c3c; /* Red border */
             border-radius: 5px;
             font-size: 16px;
@@ -101,49 +105,27 @@ if (isset($_POST['update'])) {
         .notification {
             text-align: center;
             font-size: 14px;
-            color: green; /* Green for success messages */
+            color: #28a745; /* Green for success messages */
             margin-top: 10px;
         }
         .error {
-            color: red; /* Red for error messages */
+            color: #c0392b; /* Dark red for error messages */
         }
-        .buttm
     </style>
 </head>
 <body>
-    <div class="container mt-5">
+    <div class="form-container">
         <h2>Edit Book</h2>
         <form action="" method="POST">
             <input type="hidden" name="id" value="<?php echo $book['id']; ?>">
-            <div class="form-group">
-                <label for="title">Title</label>
-                <input type="text" class="form-control" id="title" name="title" value="<?php echo $book['title']; ?>" required>
-            </div>
-            <div class="form-group">
-                <label for="author">Author</label>
-                <input type="text" class="form-control" id="author" name="author" value="<?php echo $book['author']; ?>" required>
-            </div>
-            <div class="form-group">
-                <label for="genre">Genre</label>
-                <input type="text" class="form-control" id="genre" name="genre" value="<?php echo $book['genre']; ?>" required>
-            </div>
-            <div class="form-group">
-                <label for="year">Year</label>
-                <input type="number" class="form-control" id="year" name="year" value="<?php echo $book['year']; ?>" required>
-            </div>
-            <div class="form-group">
-                <label for="description">Description</label>
-                <textarea class="form-control" id="description" name="description" rows="3" required><?php echo $book['description']; ?></textarea>
-            </div>
-            <div class="button-container">
-                <input type="submit" value="update" name="update" class="btn btn-primary">
-                <a href="view.php" class="btn btn-secondary">Back to View</a>
-            </div>
-            
+            <input type="text" name="title" value="<?php echo $book['title']; ?>" placeholder="Book Title" required>
+            <input type="text" name="author" value="<?php echo $book['author']; ?>" placeholder="Author" required>
+            <input type="text" name="genre" value="<?php echo $book['genre']; ?>" placeholder="Genre" required>
+            <input type="number" name="year" value="<?php echo $book['year']; ?>" placeholder="Publication Year" required>
+            <textarea name="description" placeholder="Description" rows="4" required><?php echo $book['description']; ?></textarea>
+            <input type="submit" name="update" value="Update Book">
         </form>
+        <a href="view.php">Back to View</a>
     </div>
 </body>
 </html>
-
-
-
