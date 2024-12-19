@@ -8,7 +8,7 @@
 </head>
 <body>
     <div class="container mt-5">
-        <h2>Add a New Book</h2>
+        <h2>Book Information</h2>
         <?php 
         include "config.php";
         if (isset($_POST['submit'])) {
