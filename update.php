@@ -4,14 +4,14 @@ include "config.php";
 
 // Handle update request
 if (isset($_POST['update'])) {
-    $firstname = $_POST['firstname'];
-    $user_id = $_POST['user_id'];
-    $lastname = $_POST['lastname'];
-    $email = $_POST['email'];
-    $password = $_POST['password'];
-    $gender = $_POST['gender'];
+    $title = $_POST['title'];
+    $book_id = $_POST['book_id'];
+    $author = $_POST['author'];
+    $genre = $_POST['genre'];
+    $publication_year = $_POST['publication_year'];
+    $description = $_POST['description'];
 
-    $sql = "UPDATE `users` SET `firstname`='$firstname', `lastname`='$lastname', `email`='$email', `password`='$password', `gender`='$gender' WHERE `id`='$user_id'";
+    $sql = "UPDATE `books` SET `title`='$title', `author`='$author', `genre`='$genre', `publication_year`='$publication_year', `description`='$description' WHERE `id`='$book_id'";
    
     $result = $conn->query($sql);
 
@@ -22,19 +22,19 @@ if (isset($_POST['update'])) {
     }
 }
 
-// Fetch user data for update
+// Fetch book data for update
 if (isset($_GET['id'])) {
-    $user_id = $_GET['id'];
-    $sql = "SELECT * FROM `users` WHERE `id`='$user_id'";
+    $book_id = $_GET['id'];
+    $sql = "SELECT * FROM `books` WHERE `id`='$book_id'";
     $result = $conn->query($sql);
 
     if ($result->num_rows > 0) {
         while ($row = $result->fetch_assoc()) {
-            $first_name = $row['firstname'];
-            $lastname = $row['lastname'];
-            $email = $row['email'];
-            $password = $row['password'];
-            $gender = $row['gender'];
+            $title = $row['title'];
+            $author = $row['author'];
+            $genre = $row['genre'];
+            $publication_year = $row['publication_year'];
+            $description = $row['description'];
             $id = $row['id'];
         }
         ?>
@@ -44,7 +44,7 @@ if (isset($_GET['id'])) {
         <head>
             <meta charset="UTF-8">
             <meta name="viewport" content="width=device-width, initial-scale=1.0">
-            <title>User Update Form</title>
+            <title>Book Update Form</title>
             <style>
                 body {
                     font-family: Arial, sans-serif;
@@ -76,15 +76,15 @@ if (isset($_GET['id'])) {
                     display: block;
                     margin-bottom: 5px;
                 }
-                input[type="text"], input[type="email"], input[type="password"] {
+                input[type="text"], input[type="number"], textarea {
                     width: 100%;
                     padding: 10px;
                     margin-bottom: 15px;
                     border: 1px solid #ccc;
                     border-radius: 5px;
                 }
-                input[type="radio"] {
-                    margin-right: 10px;
+                textarea {
+                    resize: vertical;
                 }
                 .button-container {
                     display: flex;
@@ -120,29 +120,26 @@ if (isset($_GET['id'])) {
         </head>
         <body>
             <div class="container">
-                <h2>User Update Form</h2>
+                <h2>Book Update Form</h2>
                 <form action="" method="post">
                     <fieldset>
-                        <legend>Personal Information:</legend>
+                        <legend>Book Information:</legend>
 
-                        <label for="firstname">First Name:</label>
-                        <input type="text" id="firstname" name="firstname" value="<?php echo $first_name; ?>">
-                        <input type="hidden" name="user_id" value="<?php echo $id; ?>">
+                        <label for="title">Book Title:</label>
+                        <input type="text" id="title" name="title" value="<?php echo $title; ?>">
+                        <input type="hidden" name="book_id" value="<?php echo $id; ?>">
 
-                        <label for="lastname">Last Name:</label>
-                        <input type="text" id="lastname" name="lastname" value="<?php echo $lastname; ?>">
+                        <label for="author">Author:</label>
+                        <input type="text" id="author" name="author" value="<?php echo $author; ?>">
 
-                        <label for="email">Email:</label>
-                        <input type="email" id="email" name="email" value="<?php echo $email; ?>">
+                        <label for="genre">Genre:</label>
+                        <input type="text" id="genre" name="genre" value="<?php echo $genre; ?>">
 
-                        <label for="password">Password:</label>
-                        <input type="password" id="password" name="password" value="<?php echo $password; ?>">
+                        <label for="publication_year">Publication Year:</label>
+                        <input type="number" id="publication_year" name="publication_year" value="<?php echo $publication_year; ?>">
 
-                        <label>Gender:</label>
-                        <input type="radio" id="male" name="gender" value="Male" <?php if ($gender == 'Male') { echo "checked"; } ?>>
-                        <label for="male">Male</label>
-                        <input type="radio" id="female" name="gender" value="Female" <?php if ($gender == 'Female') { echo "checked"; } ?>>
-                        <label for="female">Female</label>
+                        <label for="description">Description:</label>
+                        <textarea id="description" name="description"><?php echo $description; ?></textarea>
                     </fieldset>
 
                     <div class="button-container">
