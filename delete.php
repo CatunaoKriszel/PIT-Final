@@ -1,24 +1,26 @@
-<?php 
+<?php
+include 'config.php'; // Include the database configuration
 
-include "config.php";
-
+// Check if an ID is provided in the URL
 if (isset($_GET['id'])) {
-    $user_id = $_GET['id'];
+    $id = $_GET['id'];
 
-    // SQL query to delete the user record
-    $sql = "DELETE FROM `books` WHERE `id`='$user_id'";
-    $result = $conn->query($sql);
+    // SQL query to delete the book with the specified ID
+    $sql = "DELETE FROM books WHERE id = $id";
 
-    if ($result === TRUE) {
-        echo "Record deleted successfully.";
+    if ($conn->query($sql) === TRUE) {
+        // Redirect back to view.php with a success message
+        header("Location: view.php?message=Book successfully deleted!");
+        exit();
     } else {
-        echo "Error: " . $sql . "<br>" . $conn->error;
+        // If there's an error, show the error message
+        echo "Error deleting record: " . $conn->error;
     }
-
-    header("Location: view.php?message=Record Deleted Successfully");
-exit();
-
+} else {
+    // Redirect to view.php if no ID is provided
+    header("Location: view.php?message=No book ID specified.");
+    exit();
 }
 
+$conn->close(); // Close the database connection
 ?>
-	
