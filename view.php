@@ -1,8 +1,8 @@
 <?php 
 include "config.php";
 
-// Fetch all users
-$sql = "SELECT * FROM users";
+// Fetch all books
+$sql = "SELECT * FROM books";  // Adjust the table to 'books'
 $result = $conn->query($sql);
 
 // Check for a success message from delete
@@ -12,7 +12,7 @@ $message = isset($_GET['message']) ? $_GET['message'] : "";
 <!DOCTYPE html>
 <html>
 <head>    
-    <title>View Page</title>
+    <title>View Books Page</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
     <style>
         body {
@@ -84,7 +84,7 @@ $message = isset($_GET['message']) ? $_GET['message'] : "";
 </head>
 <body>    
     <div class="container">        
-        <h2>Users List - Book View</h2>
+        <h2>Book List - View Books</h2>
 
         <?php if ($message) : ?>
             <div class="alert alert-success">
@@ -93,18 +93,19 @@ $message = isset($_GET['message']) ? $_GET['message'] : "";
         <?php endif; ?>
 
         <div class="book-btns">
-            <!-- Link to the Book Information Form (this page will handle adding a user) -->
-            <a href="create.php" class="btn btn-primary">Add New User</a>
+            <!-- Link to the Book Information Form (this page will handle adding a book) -->
+            <a href="create.php" class="btn btn-primary">Add New Book</a>
         </div>
 
         <table class="table">    
             <thead>        
                 <tr>        
                     <th>ID</th>        
-                    <th>First Name</th>        
-                    <th>Last Name</th>        
-                    <th>Email</th>        
-                    <th>Gender</th>        
+                    <th>Title</th>        
+                    <th>Author</th>        
+                    <th>Genre</th>        
+                    <th>Publication Year</th>        
+                    <th>Description</th>        
                     <th>Action</th>   
                 </tr>    
             </thead>    
@@ -116,10 +117,11 @@ $message = isset($_GET['message']) ? $_GET['message'] : "";
 
                 <tr>                   
                     <td><?php echo $row['id']; ?></td>                    
-                    <td><?php echo $row['firstname']; ?></td>                    
-                    <td><?php echo $row['lastname']; ?></td>                    
-                    <td><?php echo $row['email']; ?></td>                    
-                    <td><?php echo $row['gender']; ?></td>                    
+                    <td><?php echo $row['title']; ?></td>                    
+                    <td><?php echo $row['author']; ?></td>                    
+                    <td><?php echo $row['genre']; ?></td>                    
+                    <td><?php echo $row['publication_year']; ?></td>                    
+                    <td><?php echo $row['description']; ?></td>                    
                     <td>
                         <a class="btn btn-info" href="update.php?id=<?php echo $row['id']; ?>">Edit</a>&nbsp;
                         <a class="btn btn-danger" href="delete.php?id=<?php echo $row['id']; ?>&redirect=view.php">Delete</a>
