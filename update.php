@@ -30,8 +30,85 @@ if (isset($_POST['update'])) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Edit Book</title>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <title>Update Book</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f8d7da; /* Light red background */
+            color: #333;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .form-container {
+            background-color: #ffffff;
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+            width: 400px;
+            transition: transform 0.2s;
+        }
+        .form-container:hover {
+            transform: scale(1.02);
+        }
+        .form-container h2 {
+            text-align: center;
+            color: #c0392b; /* Dark red for the title */
+            margin-bottom: 20px;
+            font-size: 24px;
+            font-weight: bold;
+        }
+        .form-container input,
+        .form-container textarea {
+            width: 100%;
+            padding: 12px;
+            margin-bottom: 15px;
+            border: 1px solid #e74c3c; /* Red border */
+            border-radius: 5px;
+            font-size: 16px;
+            transition: border-color 0.3s;
+        }
+        .form-container input:focus, .form-container textarea:focus {
+            border-color: #c0392b; /* Darker red on focus */
+            outline: none;
+        }
+        .form-container input[type="submit"] {
+            background-color: #c0392b; /* Dark red button */
+            color: #ffffff;
+            border: none;
+            cursor: pointer;
+            padding: 12px 20px;
+            font-size: 16px;
+            border-radius: 5px;
+            transition: background-color 0.3s, transform 0.2s;
+        }
+        .form-container input[type="submit"]:hover {
+            background-color: #a93226; /* Darker red on hover */
+            transform: translateY(-2px);
+        }
+        .form-container a {
+            display: block;
+            text-align: center;
+            margin-top: 10px;
+            color: #c0392b; /* Dark red for links */
+            text-decoration: none;
+        }
+        .form-container a:hover {
+            text-decoration: underline;
+        }
+        .notification {
+            text-align: center;
+            font-size: 14px;
+            color: green; /* Green for success messages */
+            margin-top: 10px;
+        }
+        .error {
+            color: red; /* Red for error messages */
+        }
+        .buttm
+    </style>
 </head>
 <body>
     <div class="container mt-5">
@@ -67,3 +144,6 @@ if (isset($_POST['update'])) {
     </div>
 </body>
 </html>
+
+
+
