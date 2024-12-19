@@ -6,7 +6,7 @@ if (isset($_GET['id'])) {
     $user_id = $_GET['id'];
 
     // SQL query to delete the user record
-    $sql = "DELETE FROM `users` WHERE `id`='$user_id'";
+    $sql = "DELETE FROM `books` WHERE `id`='$user_id'";
     $result = $conn->query($sql);
 
     if ($result === TRUE) {
